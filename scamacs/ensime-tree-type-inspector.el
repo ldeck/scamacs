@@ -94,13 +94,17 @@
       (message "Cannot inspect nil type.")    
     (let* ((interfaces (plist-get info :interfaces))
 	   (type (plist-get info :type))
+	   (type-id (plist-get type :type-id))
 	   (companion-id (plist-get info :companion-id))
 	   (buffer-name ensime-inspector-buffer-name)
 	   (ensime-indent-level 0))
       (with-current-buffer ensime-type-inspector-tree-buffer-name
 	;; Main Type
 	(tree-buffer-set-root (tree-node-new-root))
-	(let* ((full-type-name (ensime-font-lock-node-text-face (plist-get type :name) font-lock-variable-name-face))
+	(let* ((full-type-name (ensime-font-lock-node-text-face (format "%s %s"  
+									(plist-get type :decl-as) 
+									(plist-get type :name))
+								font-lock-variable-name-face))
 	       (type-node (tree-node-new full-type-name 0 (list 'type-name 0)
 					 nil (tree-buffer-get-root))))
 	  (tree-node-toggle-expanded type-node)
@@ -109,18 +113,32 @@
 	      (tree-node-new (format "Companion object id: %s" companion-id) 0 nil t type-node nil)
 	    (tree-node-new "No companion object" 0 nil t type-node nil))
 	  
-	  ;; Template type's interfaces
+	  ;; top level class methods first
+	  (catch 'break 
+	    (dolist (interface interfaces)
+	      (let ((itype (plist-get interface :type)))
+		(when (equal type-id (plist-get itype :type-id))
+		  (dolist (m (plist-get itype :members))
+		    (let ((type (ensime-member-type m)))
+		      (when (or (equal 'method (ensime-declared-as m))
+				(equal 'field (ensime-declared-as m)))
+			(make-member-node type-node m))))
+		  (throw 'break nil)))))
+	    
+	  ;; Rest of Template type's interfaces
 	  (dolist (interface interfaces)
-	    (let ((interface-node (make-interface-node type-node interface))
-		  (members (plist-get (plist-get interface :type) :members)))
-	      ;; Interface type's members
-	      (dolist (m members)
-		(let ((type (ensime-member-type m)))
-		  (if (or (equal 'method (ensime-declared-as m))
-			  (equal 'field  (ensime-declared-as m)))
-		      (make-member-node interface-node m)
-		    nil))))))
-	(tree-buffer-update)))))
+	    (let ((itype (plist-get interface :type)))
+	      (unless (equal type-id (plist-get itype :type-id))
+		(let ((interface-node (make-interface-node type-node interface))
+		      (members (plist-get itype :members)))
+		  ;; Interface type's members
+		  (dolist (m members)
+		    (let ((type (ensime-member-type m)))
+		      (when (or (equal 'method (ensime-declared-as m))
+				(equal 'field  (ensime-declared-as m)))
+			(make-member-node interface-node m))))))))
+
+	  (tree-buffer-update))))))
 
 	      ;; (let* ((type-args (ensime-type-type-args type))
 	      ;;        (last-type-arg (car (last type-args)))
