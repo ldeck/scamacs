@@ -6,7 +6,7 @@
 ;; Main startup ensime with ecb support
 (defun ensime-ecb ()
   (interactive)
-  (ensime)
-  (ecb-activate))
+  (ecb-activate)
+  (ecb-layout-switch "leftright-package"))
 
 (provide 'ensime-ecb)
