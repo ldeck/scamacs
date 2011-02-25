@@ -92,7 +92,7 @@
 ;; root: TreeNode
 ;; info: PList
 (defun ensime-make-package-node (parent info)
-  (let* ((pkg-name (plist-get info :full-name))
+  (let* ((pkg-name (plist-get info :name))
 	 (pkg-node (tree-node-new pkg-name 0 '() nil parent nil)))
     (dolist (m (plist-get info :members))
       (if (ensime-package-info-p m) 
@@ -125,7 +125,7 @@
     nil
     nil
   "Create and register a function to update the packge tree inspector during idle."
-  (message "Package Inspector idle refresh.")
+  ;; (message "Package Inspector idle refresh.")
   (ensime-inspect-project-package))
 
 (provide 'ensime-tree-package-inspector)
