@@ -104,7 +104,7 @@ The parameters are set for the following display-types:
                           (if ,bg-rest (list :foreground ,bg-rest))
                           (if ,reverse-video-p (list :reverse-video t))))))
 
-(defface ecb-default-general-face (ecb-face-default 1.0)
+(defface ecb-default-general-face (ecb-face-default 0.8)
   "*Basic face for all ECB tree-buffers.
 It´s recommended to define here the font-family, the font-size, the basic
 color etc.
