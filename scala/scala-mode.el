@@ -59,6 +59,7 @@
 (require 'scala-mode-fontlock)
 (require 'scala-mode-ui)
 (require 'scala-mode-feature)
+(require 'scala-mode-outline)
 
 ;;; Customization and Variables
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
