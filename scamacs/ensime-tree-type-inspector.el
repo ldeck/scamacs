@@ -39,7 +39,7 @@
 		  ;;  ecb-tree-truncate-lines)
    :read-only t
    :tree-indent ecb-tree-indent
-   :incr-search-p nil ;; ecb-tree-incremental-search
+   :incr-search-p ecb-tree-incremental-search
    :incr-search-additional-pattern nil ;; ecb-methods-incr-searchpattern-node-prefix
    :arrow-navigation ecb-tree-navigation-by-arrow
    :hor-scroll-step ecb-tree-easy-hor-scroll
