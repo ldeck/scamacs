@@ -1,3 +1,6 @@
 [submodule "ensime"]
 	path = ensime
 	url = git://github.com/aemoncannon/ensime.git
+[submodule "ecb"]
+	path = ecb
+	url = https://github.com/emacsmirror/ecb.git
