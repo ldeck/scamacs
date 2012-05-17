@@ -268,8 +268,8 @@ When called repeatedly, indent each time one stop further on the right."
 
 (defun scala-newline ()
   (interactive)
-  (if (scala-in-multi-line-comment-p)
-      (progn 
-	(newline-and-indent)
-	(insert "* "))
-    (newline)))
+  ;; (if (scala-in-multi-line-comment-p)
+  ;;     (progn 
+  ;;   (newline-and-indent)
+  ;;   (insert "* "))
+    (newline))
