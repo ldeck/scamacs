@@ -270,6 +270,6 @@ When called repeatedly, indent each time one stop further on the right."
   (interactive)
   (if (scala-in-multi-line-comment-p)
       (progn 
-	(newline-and-indent)
-	(insert "* "))
+    (newline-and-indent)
+    (insert "* "))
     (newline)))
