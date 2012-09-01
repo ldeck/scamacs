@@ -15,10 +15,29 @@ Scamacs uses git submodules to pull in Ensime and ECB.  The Scala-mode is a fork
 
 ### Building 
 
+First build all the components, then we'll configure everything.
+
 ### Building Ensime
 
-Scamacs contains an unmodified version of Ensime.  Build Ensime in the usual fashion.
+Scamacs contains an unmodified version of Ensime.  Build Ensime in the usual fashion as described on Ensime's github page.  Follow the Developer Quick Start section for building Ensime.  (Remember we'll configure later.)
 
+- 'sbt stage'
+
+### Building ECB
+
+You should be using a Emacs version of 23.2 or greater. 
+
+- 'cd' into the 'ecb' directory.
+- Edit the Makefile in the 'ecb' directory.
+- At the top of the Makefile, comment out the CDET='c:\....', and blank define of 'CEDET='.  The comments in the Makefile explain the situation.
+- Now byte compile ECB with '$ make'
+- Ignore the warnings, there should be no errors.
+
+### Building Scala-Mode
+
+- 'cd' into the 'scala' directory and type '$ make' to byte compile.
+
+## Configuring Scamacs
 
 ## Using Scamacs
 
