@@ -1,6 +1,24 @@
-This is little original code in Scamacs, it is simply the confluence of three major pieces of Scala related elisp: Ensime, Scala-Mode, and ECB.
+There is little original code in Scamacs, it is simply the confluence of three major pieces of Scala related elisp: Ensime, Scala-Mode, and ECB. The respective primary authors deserve full credit for the respective components.
 
-# Setting up Scamacs. #
+Test Header
+===========
 
-# Using Scamacs #
+## Setting up Scamacs
+
+### Git Cloning
+
+Scamacs uses git submodules to pull in Ensime and ECB.  The Scala-mode is a fork from the Scala distribution.
+
+- Git clone the Scamacs project.
+- Init the submodules via 'git submodule init'
+- Clone down the submodules via 'git submodule update'
+
+### Building 
+
+### Building Ensime
+
+Scamacs contains an unmodified version of Ensime.  Build Ensime in the usual fashion.
+
+
+## Using Scamacs
 
