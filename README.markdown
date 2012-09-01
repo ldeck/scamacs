@@ -30,7 +30,7 @@ You should be using a Emacs version of 23.2 or greater.
 
 - 'cd' into the 'ecb' directory.
 - Edit the Makefile in the 'ecb' directory.
-- At the top of the Makefile, comment out the CDET='c:\....', and blank define of 'CEDET='.  The comments in the Makefile explain the situation.
+- At the top of the Makefile, comment out the CDET='c:\....', and *uncomment* blank define of 'CEDET='.  The comments in the Makefile explain the situation.
 - Now byte compile ECB with '$ make'
 - Ignore the warnings, there should be no errors.
 
