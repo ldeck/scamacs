@@ -1,7 +1,8 @@
-There is little original code in Scamacs, it is simply the confluence of three major pieces of Scala related elisp: Ensime, Scala-Mode, and ECB. The respective primary authors deserve full credit for the respective components.
+#Installing Scamacs
 
-Test Header
-===========
+## Declaration of it wasn't me.
+
+There is little original code in Scamacs, it is simply the confluence of three major pieces of Scala related elisp: Ensime, Scala-Mode, and ECB. The respective primary authors deserve full credit for the respective components.
 
 ## Setting up Scamacs
 
