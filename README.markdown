@@ -47,8 +47,11 @@ Assumes scamacs was git cloned into /code directory.  Adjust accordingly.
 
     ;; ECB
     (add-to-list 'load-path "/code/scamacs/ecb")
-    ;; SCALA  
+    ;; Scala
     (add-to-list 'load-path "/code/scamacs/scala")
+    ;; Scamacs
+    (add-to-list 'load-path "/code/scamacs/scamacs")
+
     (load "scala-mode-auto")
 
     (defun scala-setup ()
