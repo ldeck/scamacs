@@ -1,83 +1,64 @@
-#Installing Scamacs
+# Scamacs
+
+Scamacs provides a number of predefined layouts for ecb and enhances ensime's package and type inspectors.
+
+# Installing Scamacs
 
 ## Declaration of it wasn't me.
 
 There is little original code in Scamacs.  It is simply the confluence of three major pieces of Scala related elisp: Ensime, Scala-Mode, and ECB amalgamated on Saturday morning.  The primary authors deserve full credit for the respective components.
 
+## Fork Difference with RayRacine/scamacs
+
+I have removed the submodules for ecb, ensime and the custom scala mode.
+
+Instead, this readme directs users to install them via the melpa package manager.
+
+Thus this scamacs only includes what makes scamacs unique.
+
 ## Emacs Version
-The following has been tested on the current emacs 24.2.  Earlier versions of emacs have not been tested.
+The following has been tested on emacs 24.2 and 24.5.  Earlier versions of emacs have not been tested.
 
 ## Setting up Scamacs
 
-### Git Cloning
+### Prerequisites
 
-Scamacs uses git submodules to pull in Ensime and ECB.  The Scala-mode is a fork from the Scala distribution.
+Scamacs relies upon Ensime, ECB, and the Scala modes for emacs.
 
-- Git clone the Scamacs project.
-- Init the submodules via 'git submodule init'
-- Clone down the submodules via 'git submodule update'
+You can install the following via [MELPA](http://melpa.org/#/getting-started "MELPA getting started").
 
-### Building 
+- [ecb](http://melpa.org/#/ecb)
+- [Ensime](http://melpa.org/#/ensime)
 
-First build all the components, then we'll configure everything.
+### Git Cloning and Configure
 
-### Building Ensime
+Scamacs is self-contained. Simply clone it and load it.
 
-Scamacs contains an unmodified version of Ensime.  Build Ensime in the usual fashion as described on Ensime's github page.  Follow the Developer Quick Start section for building Ensime.  (Remember we'll configure later.)
+Well, of course, you need to have installed the above listed prerequisites.
 
-- 'sbt stage'
+Then, clone scamacs somewhere.
 
-### Building ECB
+    $ git clone http://github.com/ldeck/scamacs.git /code/scamacs
 
-You should be using a Emacs version of 23.2 or greater. 
+Here is a straightforward configuration in the .emacs.d/init.el, assuming you have cloned scamacs into /code/scamacs. Adjust accordingly.
 
-- 'cd' into the 'ecb' directory.
-- Now byte compile ECB with '$ make'
-- Ignore the warnings, there should be no errors.
-
-### Building Scala-Mode
-
-- 'cd' into the 'scala' directory and type '$ make' to byte compile.
-
-## Configuring Scamacs
-
-Many ways to skin this cat.  Here is a straightforward configuration in the .emacs.d/init.el  
-
-Assumes scamacs was git cloned into /code directory.  Adjust accordingly.
-
-    ;; ECB
-    (add-to-list 'load-path "/code/scamacs/ecb")
-    ;; Scala
-    (add-to-list 'load-path "/code/scamacs/scala")
-    ;; Scamacs
+    ;; load Scamacs
     (add-to-list 'load-path "/code/scamacs/scamacs")
-
-    (load "scala-mode-auto")
-
-    (defun scala-setup ()
-      ;; turnoff indent tabs mode
-      (setq indent-tabs-mode nil)
-      (toggle-truncate-lines t)
-      (show-paren-mode t)
-      (ido-mode t))
-
-    ;; scala mode hooks
-    (add-hook 'scala-mode-hook 'scala-setup)
-
-    ;; Ensime 
-    (add-to-list 'load-path "/code/scamacs/ensime/dist_2.9.2/elisp")
-    (add-to-list 'exec-path "/code/scamacs/ensime/dist_2.9.2/bin")
 
     (require 'ensime)
     (require 'ensime-ecb)
 
 ## Using Scamacs
 
-Ensure you have a correctly setup .ensime file.  See ensime documentation.
+Ensure you have a correctly setup .ensime file. See ensime [Quick Start Guide](https://github.com/ensime/ensime-emacs/wiki/Quick-Start-Guide "Ensime Quick Start Guide").
 
 'cd' into your scala project directory, and open an scala source file.
 
-    M-x ensime-ecb
     M-x ensime
+    M-x ensime-ecb
 
-See the on-line ECB documentation for the ECB project for using ECB.
+See the on-line ECB [documentation](http://melpa.org/#/ecb) for the ECB project for using ECB.
+
+## Bugs
+
+In ensime-ecb mode the cursor is regularly moved into the buffer.

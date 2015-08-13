@@ -1,6 +1,0 @@
-[submodule "ensime"]
-	path = ensime
-	url = https://github.com/aemoncannon/ensime.git
-[submodule "ecb"]
-	path = ecb
-	url = https://github.com/RayRacine/ecb.git
